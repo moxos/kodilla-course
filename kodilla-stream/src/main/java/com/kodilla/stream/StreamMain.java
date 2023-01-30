@@ -1,6 +1,7 @@
 package com.kodilla.stream;
 
 import com.kodilla.stream.beautifier.PoemBeautifier;
+import com.kodilla.stream.iterate.NumbersGenerator;
 import com.kodilla.stream.lambda.ExpressionExecutor;
 import com.kodilla.stream.lambda.Processor;
 import com.kodilla.stream.reference.FunctionalCalculator;
@@ -31,6 +32,9 @@ public class StreamMain {
         poemBeautifierSecond.beautify("pear", (Text)->  Text + " and parsley");
         poemBeautifierThird.beautify("12345", (Text)-> "Numbers: "+ Text);
 
+
+        System.out.println("Using Stream to generate even numbers from 1 to 20");
+        NumbersGenerator.generateEven(20);
         }
     }
 
