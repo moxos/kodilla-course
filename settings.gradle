@@ -5,4 +5,5 @@ findProject(':kodilla-testing:src:main:test')?.name = 'test'
 include 'kodilla-stream'
 include 'kodilla-rps'
 include 'kodilla-exception'
+include 'kodilla-good-patterns'
 
