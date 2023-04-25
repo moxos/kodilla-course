@@ -6,6 +6,9 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
@@ -37,26 +40,33 @@ class CompanyDaoTestSuite {
         lindaKovalsky.getCompanies().add(dataMaesters);
         lindaKovalsky.getCompanies().add(greyMatter);
 
-        //When
         companyDao.save(softwareMachine);
         int softwareMachineId = softwareMachine.getId();
         companyDao.save(dataMaesters);
         int dataMaestersId = dataMaesters.getId();
         companyDao.save(greyMatter);
         int greyMatterId = greyMatter.getId();
-
-        //Then
         assertNotEquals(0, softwareMachineId);
         assertNotEquals(0, dataMaestersId);
         assertNotEquals(0, greyMatterId);
 
-        //CleanUp
-        //try {
-        //    companyDao.deleteById(softwareMachineId);
-        //    companyDao.deleteById(dataMaestersId);
-        //    companyDao.deleteById(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+
+        }
+    }
+
+    @Test
+    public void testStartsWith() {
+
+        Company greyMatter = new Company("Bartek Blaz");
+        companyDao.save(greyMatter);
+        List<Company> startWithGre = companyDao.startsWith("Bar");
+        assertEquals(3, startWithGre.size());
+        companyDao.deleteById(greyMatter.getId());
     }
 }
+

@@ -1,10 +1,21 @@
 package com.kodilla.kodillahibernate.task.dao;
 
 import com.kodilla.kodillahibernate.task.Task;
+import jakarta.transaction.Transactional;
+import org.springframework.data.jdbc.repository.query.Query;
 import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
-public interface TaskDao extends CrudRepository<Task, Integer> {
-    List<Task> findByDuration(int duration);
-}
+    @Transactional
+    @Repository
+    public interface TaskDao extends CrudRepository<Task, Integer> {
+        List<Task> findByDuration(int duration);
+
+        @Query
+        List<Task> retrieveLongTasks();
+        @Query
+        List<Task> retrieveShortTasks();
+
+    }
